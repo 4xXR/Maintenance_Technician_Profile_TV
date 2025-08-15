@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Maintenance Technician Profile – TV Dashboard</title>
+  <meta name="description" content="Single-page TV-friendly dashboard for displaying a Maintenance Technician profile summary and requirements." />
+  <style>
+    :root{
+      --bg: #0b0f14;          /* dark theme background */
+      --fg: #e7edf3;          /* text */
+      --muted: #9fb3c8;       /* secondary text */
+      --card: #111823;        /* card background */
+      --accent: #2dd4bf;      /* teal accent */
+      --accent-weak: #164e63; /* darker accent */
+      --safe: 48px;           /* TV safe area */
+      --maxw: 1760px;         /* content max width */
+      --radius: 18px;
+      --shadow: 0 8px 28px rgba(0,0,0,.35);
+      --base: 20px;           /* base font size (scaled by JS) */
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: var(--bg); color: var(--fg);
+      font-size: var(--base);
+    }
+    .app{min-height:100%; display:flex; flex-direction:column}
+    header{
+      position:sticky; top:0; z-index:10;
+      background: linear-gradient(0deg, transparent, rgba(0,0,0,.35)), var(--bg);
+      backdrop-filter: blur(4px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .topbar{
+      padding: calc(var(--safe)/3) var(--safe);
+      display:flex; align-items:center; gap:16px; justify-content:space-between; max-width:var(--maxw); margin:0 auto;
+    }
+    h1{margin:0; font-weight:800; letter-spacing:.3px; font-size: clamp(36px, 4.2vw, 64px)}
+    .clock{font-variant-numeric: tabular-nums; font-weight:600; font-size: clamp(24px, 2.8vw, 40px)}
+    .actions{display:flex; gap:12px; align-items:center}
+    button.icon{
+      appearance:none; border:1px solid rgba(255,255,255,.12); color:var(--fg); background:linear-gradient(180deg, #0e1622, #0b111a);
+      padding: 10px 16px; border-radius: 14px; cursor: pointer; font-weight:600; font-size: clamp(16px, 1.4vw, 20px);
+      box-shadow: var(--shadow);
+    }
+    button.icon:hover{border-color: rgba(255,255,255,.28)}
+
+    main{flex:1; padding: var(--safe); display:flex; justify-content:center}
+    .grid{width:100%; max-width:var(--maxw); display:grid; gap:20px;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 1fr;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      padding: 22px 24px; box-shadow: var(--shadow);
+    }
+    .card h2{margin:0 0 12px; font-size: clamp(28px, 2.6vw, 42px)}
+    .card p{margin:0; line-height:1.5; font-size: clamp(18px, 1.6vw, 24px)}
+    .meta{color:var(--muted)}
+    ul{margin:0; padding-left: 1.2em}
+    li{margin: 8px 0; font-size: clamp(18px, 1.6vw, 24px)}
+
+    /* Responsive grid layout for cards */
+    .span-12{grid-column: span 12}
+    .span-6{grid-column: span 6}
+    .span-4{grid-column: span 4}
+
+    @media (max-width: 1400px){ .span-6{grid-column: span 12} .span-4{grid-column: span 12} }
+
+    footer{padding: 8px var(--safe) calc(var(--safe)/2); color:var(--muted)}
+    .footwrap{max-width:var(--maxw); margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:12px}
+
+    .tag{display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(255,255,255,.12); border-radius:999px; padding:6px 12px; font-size: clamp(14px, 1.2vw, 18px)}
+    .accent{color:var(--accent)}
+
+    /* Light theme overrides */
+    .light{--bg:#f7fafc; --fg:#0b1220; --muted:#4a606f; --card:#ffffff; --accent:#2563eb; --accent-weak:#1e3a8a}
+
+    /* Print */
+    @media print{
+      :root{--bg:#ffffff; --fg:#000; --muted:#333}
+      header, .actions{display:none}
+      body{background:#fff;color:#000}
+      .card{box-shadow:none;border-color:#ccc}
+    }
+  </style>
+</head>
+<body>
+  <div class="app" id="app">
+    <header>
+      <div class="topbar">
+        <h1 id="title">Perfil: Maintenance Technician</h1>
+        <div class="actions">
+          <span class="clock" id="clock">--:--</span>
+          <button class="icon" id="btn-full">Pantalla completa</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="grid" id="grid">
+        <article class="card span-12" id="summary">
+          <h2>Resumen del perfil</h2>
+          <p>
+            We are seeking a highly skilled Maintenance Technician with a background in mechanical and mechatronics engineering and a minimum of two years’ hands-on experience in maintaining specialized machinery. This person will be responsible for ensuring optimal performance, diagnosing technical issues, suggesting improvements, and ensuring the continuous operation of critical equipment.
+          </p>
+        </article>
+
+        <article class="card span-6" id="requirements">
+          <h2>Requisitos clave</h2>
+          <ul>
+            <li>Technical or technological degree in Mechanical Engineering, Mechatronics, Industrial Maintenance, or a related field.</li>
+            <li>Minimum of 2 years of experience in industrial or specialized equipment maintenance.</li>
+            <li>Strong knowledge of electromechanical, pneumatic, and hydraulic systems.</li>
+            <li>Proficient in diagnosing, repairing, and optimizing complex, high-precision machines.</li>
+            <li>Skilled in reading and interpreting technical manuals, schematics, and electrical diagrams.</li>
+            <li>Experience using diagnostic tools, maintenance software (preferred), and generating technical reports.</li>
+            <li>Proactive, solution-oriented mindset with a strong commitment to continuous improvement.</li>
+            <li>Availability for both scheduled maintenance and emergency repairs as needed.</li>
+            <li>Bilingual in English and Spanish is a plus.</li>
+          </ul>
+        </article>
+
+        <article class="card span-6" id="responsibilities">
+          <h2>Responsabilidades clave</h2>
+          <ul>
+            <li>Perform preventive and corrective maintenance as per established schedules.</li>
+            <li>Diagnose and repair technical issues efficiently and safely.</li>
+            <li>Maintain detailed records of all maintenance activities for each piece of equipment.</li>
+            <li>Propose and implement technical improvements to optimize machinery performance.</li>
+            <li>Collaborate with the production team to minimize equipment downtime.</li>
+            <li>Ensure compliance with safety and industrial standards during all maintenance tasks.</li>
+          </ul>
+        </article>
+
+        <article class="card span-12" id="competencies">
+          <h2>Competencias principales</h2>
+          <ul>
+            <li>Technical and analytical thinking</li>
+            <li>Attention to detail</li>
+            <li>Teamwork and collaboration</li>
+            <li>Effective communication</li>
+            <li>Adaptability to new technologies and methodologies</li>
+          </ul>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footwrap">
+        <div class="meta">Last updated: <span id="updated">—</span></div>
+        <div class="meta tag"><span class="accent">TV Mode</span> • Sin dependencias</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // ===== SETTINGS (editable) =====
+    const SETTINGS = {
+      THEME: "dark",      // "dark" | "light"
+      SHOW_SECONDS: true,  // true | false
+      AUTO_REFRESH_MIN: 0, // 0 = off; N > 0 => reload every N minutes
+      LANGUAGE: "ES"       // "ES" | "EN" (titles only; content stays as provided)
+    };
+
+    // Allow overrides via query string, e.g.: ?theme=light&seconds=false&refresh=5&lang=EN
+    const qs = new URLSearchParams(location.search);
+    const getBool = (v, d) => v==null ? d : /^(1|true|yes|on)$/i.test(v);
+    const cfg = {
+      theme: (qs.get('theme')||SETTINGS.THEME||'dark').toLowerCase(),
+      showSeconds: getBool(qs.get('seconds'), SETTINGS.SHOW_SECONDS),
+      refreshMin: parseInt(qs.get('refresh') ?? SETTINGS.AUTO_REFRESH_MIN, 10) || 0,
+      lang: (qs.get('lang')||SETTINGS.LANGUAGE||'ES').toUpperCase()
+    };
+
+    // Apply theme
+    if(cfg.theme === 'light') document.getElementById('app').classList.add('light');
+
+    // Local clock + Last updated
+    const clockEl = document.getElementById('clock');
+    const updatedEl = document.getElementById('updated');
+    function pad(n){ return String(n).padStart(2,'0'); }
+    function tick(){
+      const now = new Date();
+      const h = pad(now.getHours());
+      const m = pad(now.getMinutes());
+      const s = pad(now.getSeconds());
+      clockEl.textContent = cfg.showSeconds ? `${h}:${m}:${s}` : `${h}:${m}`;
+      updatedEl.textContent = now.toLocaleString();
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    // Fullscreen button
+    const fsBtn = document.getElementById('btn-full');
+    fsBtn.addEventListener('click', async () => {
+      try{
+        if(!document.fullscreenElement){
+          await document.documentElement.requestFullscreen();
+          fsBtn.textContent = 'Salir de pantalla completa';
+        } else {
+          await document.exitFullscreen();
+          fsBtn.textContent = 'Pantalla completa';
+        }
+      } catch(e){ console.error(e); }
+    });
+
+    // Optional auto-refresh (for cache bust / data rotation)
+    if(cfg.refreshMin > 0){
+      setTimeout(() => location.reload(), cfg.refreshMin * 60 * 1000);
+    }
+
+    // Dynamic scaling to reduce scrolling on TVs
+    function scaleForViewport(){
+      // Base font proportional to viewport height (aiming for no scroll at 1080p/4K)
+      const h = window.innerHeight;
+      // Rough heuristic: 1080px -> ~20px; 2160px -> ~28px
+      const base = Math.max(18, Math.min(32, 18 + (h - 900)/150));
+      document.documentElement.style.setProperty('--base', base + 'px');
+    }
+    scaleForViewport();
+    addEventListener('resize', scaleForViewport);
+
+    // Optional: ES/EN titles
+    const i18n = {
+      ES: {
+        title: 'Perfil: Maintenance Technician',
+        summary: 'Resumen del perfil',
+        reqs: 'Requisitos clave',
+        resps: 'Responsabilidades clave',
+        comps: 'Competencias principales'
+      },
+      EN: {
+        title: 'Profile: Maintenance Technician',
+        summary: 'Profile Summary',
+        reqs: 'Key Requirements',
+        resps: 'Key Responsibilities',
+        comps: 'Core Competencies'
+      }
+    };
+    function applyLang(){
+      const t = i18n[cfg.lang] || i18n.ES;
+      document.getElementById('title').textContent = t.title;
+      document.querySelector('#summary h2').textContent = t.summary;
+      document.querySelector('#requirements h2').textContent = t.reqs;
+      document.querySelector('#responsibilities h2').textContent = t.resps;
+      document.querySelector('#competencies h2').textContent = t.comps;
+    }
+    applyLang();
+  </script>
+</body>
+</html>
