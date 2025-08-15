@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Maintenance Technician Profile – TV Dashboard</title>
+  <title>Estamos contratando: Técnico de mantenimiento – TV Dashboard</title>
   <style>
     :root{
       --bg:#0b0f14;--fg:#e7edf3;--muted:#9fb3c8;
@@ -17,14 +17,13 @@
     .app{min-height:100%;display:flex;flex-direction:column}
     header{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid rgba(255,255,255,.06)}
     .topbar{padding:16px var(--safe);display:flex;align-items:center;justify-content:space-between;max-width:var(--maxw);margin:0 auto}
-    h1{margin:0;font-weight:800;letter-spacing:.3px;font-size:clamp(36px,4.2vw,64px)}
+    h1{margin:0;font-weight:800;letter-spacing:.3px;font-size:clamp(32px,3.8vw,60px)}
     .clock{font-variant-numeric:tabular-nums;font-weight:600;font-size:clamp(24px,2.8vw,40px)}
     .actions{display:flex;gap:10px;align-items:center}
     button.icon{appearance:none;border:1px solid rgba(255,255,255,.12);color:var(--fg);background:#0d1420;
                 padding:8px 14px;border-radius:14px;cursor:pointer;font-weight:600;font-size:clamp(16px,1.4vw,20px);box-shadow:var(--shadow)}
     button.icon:hover{border-color:rgba(255,255,255,.28)}
     main{flex:1;padding:24px var(--safe);display:flex;justify-content:center}
-    /* Compact grid & cards */
     .grid{width:100%;max-width:var(--maxw);display:grid;gap:10px;grid-template-columns:repeat(12,1fr)}
     .card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);
           border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
@@ -42,7 +41,7 @@
   <div class="app" id="app">
     <header>
       <div class="topbar">
-        <h1 id="title">Perfil: Maintenance Technician</h1>
+        <h1 id="title">Estamos contratando: Técnico de mantenimiento</h1>
         <div class="actions">
           <span class="clock" id="clock">--:--</span>
           <button class="icon" id="btn-full">Pantalla completa</button>
@@ -54,55 +53,54 @@
         <article class="card span-12" id="summary">
           <h2>Resumen del perfil</h2>
           <p>
-            We are seeking a highly skilled Maintenance Technician with a background in mechanical and mechatronics engineering and a minimum of two years’ hands-on experience in maintaining specialized machinery. This person will be responsible for ensuring optimal performance, diagnosing technical issues, suggesting improvements, and ensuring the continuous operation of critical equipment.
+            Buscamos un Técnico de Mantenimiento altamente capacitado con formación en ingeniería mecánica o mecatrónica y un mínimo de dos años de experiencia práctica en el mantenimiento de maquinaria especializada. La persona seleccionada será responsable de garantizar un rendimiento óptimo, diagnosticar problemas técnicos, proponer mejoras y asegurar la operación continua de equipos críticos.
           </p>
         </article>
         <article class="card span-6" id="requirements">
           <h2>Requisitos clave</h2>
           <ul>
-            <li>Technical or technological degree in Mechanical Engineering, Mechatronics, Industrial Maintenance, or a related field.</li>
-            <li>Minimum of 2 years of experience in industrial or specialized equipment maintenance.</li>
-            <li>Strong knowledge of electromechanical, pneumatic, and hydraulic systems.</li>
-            <li>Proficient in diagnosing, repairing, and optimizing complex, high-precision machines.</li>
-            <li>Skilled in reading and interpreting technical manuals, schematics, and electrical diagrams.</li>
-            <li>Experience using diagnostic tools, maintenance software (preferred), and generating technical reports.</li>
-            <li>Proactive, solution-oriented mindset with a strong commitment to continuous improvement.</li>
-            <li>Availability for both scheduled maintenance and emergency repairs as needed.</li>
-            <li>Bilingual in English and Spanish is a plus.</li>
+            <li>Título técnico o tecnológico en Ingeniería Mecánica, Mecatrónica, Mantenimiento Industrial o campo relacionado.</li>
+            <li>Mínimo 2 años de experiencia en mantenimiento de equipos industriales o especializados.</li>
+            <li>Sólidos conocimientos en sistemas electromecánicos, neumáticos e hidráulicos.</li>
+            <li>Capacidad para diagnosticar, reparar y optimizar máquinas complejas y de alta precisión.</li>
+            <li>Habilidad para leer e interpretar manuales técnicos, esquemas y diagramas eléctricos.</li>
+            <li>Experiencia en el uso de herramientas de diagnóstico, software de mantenimiento (deseable) y generación de informes técnicos.</li>
+            <li>Actitud proactiva, orientada a soluciones y comprometida con la mejora continua.</li>
+            <li>Disponibilidad para mantenimiento programado y reparaciones de emergencia.</li>
+            <li>Bilingüe en español e inglés es una ventaja.</li>
           </ul>
         </article>
         <article class="card span-6" id="responsibilities">
           <h2>Responsabilidades clave</h2>
           <ul>
-            <li>Perform preventive and corrective maintenance as per established schedules.</li>
-            <li>Diagnose and repair technical issues efficiently and safely.</li>
-            <li>Maintain detailed records of all maintenance activities for each piece of equipment.</li>
-            <li>Propose and implement technical improvements to optimize machinery performance.</li>
-            <li>Collaborate with the production team to minimize equipment downtime.</li>
-            <li>Ensure compliance with safety and industrial standards during all maintenance tasks.</li>
+            <li>Realizar mantenimiento preventivo y correctivo según el plan establecido.</li>
+            <li>Diagnosticar y reparar problemas técnicos de manera eficiente y segura.</li>
+            <li>Mantener registros detallados de todas las actividades de mantenimiento por equipo.</li>
+            <li>Proponer e implementar mejoras técnicas para optimizar el rendimiento de la maquinaria.</li>
+            <li>Colaborar con el equipo de producción para minimizar el tiempo de inactividad.</li>
+            <li>Garantizar el cumplimiento de las normas de seguridad e industriales en todas las tareas de mantenimiento.</li>
           </ul>
         </article>
         <article class="card span-12" id="competencies">
           <h2>Competencias principales</h2>
           <ul>
-            <li>Technical and analytical thinking</li>
-            <li>Attention to detail</li>
-            <li>Teamwork and collaboration</li>
-            <li>Effective communication</li>
-            <li>Adaptability to new technologies and methodologies</li>
+            <li>Pensamiento técnico y analítico</li>
+            <li>Atención al detalle</li>
+            <li>Trabajo en equipo y colaboración</li>
+            <li>Comunicación efectiva</li>
+            <li>Adaptabilidad a nuevas tecnologías y metodologías</li>
           </ul>
         </article>
       </section>
     </main>
     <footer>
       <div class="footwrap">
-        <div class="meta">Last updated: <span id="updated">—</span></div>
+        <div class="meta">Última actualización: <span id="updated">—</span></div>
         <div class="meta">TV Mode • Sin dependencias</div>
       </div>
     </footer>
   </div>
   <script>
-    // SETTINGS & querystring overrides
     const SETTINGS={THEME:"dark",SHOW_SECONDS:true,AUTO_REFRESH_MIN:0,LANGUAGE:"ES"};
     const qs=new URLSearchParams(location.search);
     const getBool=(v,d)=>v==null?d:/^(1|true|yes|on)$/i.test(v);
@@ -113,18 +111,14 @@
       lang:(qs.get('lang')||SETTINGS.LANGUAGE).toUpperCase()
     };
     if(cfg.theme==='light') document.getElementById('app').classList.add('light');
-    // Clock & last updated
     const clockEl=document.getElementById('clock');const updatedEl=document.getElementById('updated');
     const pad=n=>String(n).padStart(2,'0');
     function tick(){const now=new Date();const h=pad(now.getHours()),m=pad(now.getMinutes()),s=pad(now.getSeconds());
       clockEl.textContent=cfg.showSeconds?`${h}:${m}:${s}`:`${h}:${m}`;updatedEl.textContent=now.toLocaleString();}
     tick();setInterval(tick,1000);
-    // Fullscreen
     const fsBtn=document.getElementById('btn-full');
     fsBtn.addEventListener('click',async()=>{try{if(!document.fullscreenElement){await document.documentElement.requestFullscreen();fsBtn.textContent='Salir de pantalla completa';}else{await document.exitFullscreen();fsBtn.textContent='Pantalla completa';}}catch(e){console.error(e)}});
-    // Auto-refresh
     if(cfg.refreshMin>0){setTimeout(()=>location.reload(),cfg.refreshMin*60*1000)}
-    // Dynamic scaling
     function scaleForViewport(){const h=window.innerHeight;const base=Math.max(18,Math.min(30,18+(h-900)/170));document.documentElement.style.setProperty('--base',base+'px');}
     scaleForViewport();addEventListener('resize',scaleForViewport);
   </script>
